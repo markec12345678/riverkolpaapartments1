@@ -137,8 +137,17 @@ const {
     </style>
 
     <title>{title}</title>
+    <style is:inline>
+      html {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+      * {
+        max-width: 100%;
+      }
+    </style>
   </head>
-  <body class="overflow-x-hidden max-w-screen">
+  <body class="overflow-x-hidden max-w-[100vw]">
     <!-- Skip to Content Link (Accessibility) -->
     <a href="#main-content" class="skip-link" data-sl="Preskoči na vsebino" data-en="Skip to content">Preskoči na vsebino</a>
 
