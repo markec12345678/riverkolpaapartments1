@@ -1,0 +1,140 @@
+/* src/components/BookingCalendar.css */
+
+/* Import originalnih stilov knjižnice */
+@import 'react-day-picker/style.css';
+
+/* --- GLAVNI KONTEJNER --- */
+.premium-calendar-container {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.premium-calendar-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2C4A3B;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* --- POPRAVILO ZA MREŽNI PRIKAZ (GRID) --- */
+.rdp-month_grid {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: 0.25rem !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* Nastavitve korena koledarja */
+.rdp-root {
+  --rdp-cell-size: 2.75rem;
+  --rdp-accent-color: #2C4A3B;
+  --rdp-accent-background-color: #E8E4D9;
+  --rdp-font-family: 'Inter', system-ui, sans-serif;
+  width: 100%;
+  direction: ltr;
+}
+
+/* Glava meseca */
+.rdp-month_caption {
+  height: 3rem;
+  font-size: 1.125rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  color: #2C4A3B;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+/* Gumbi za puščice */
+.rdp-nav_button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  color: #2C4A3B;
+  transition: background-color 0.2s;
+}
+.rdp-nav_button:hover {
+  background-color: rgba(44, 74, 59, 0.1);
+}
+
+/* Imena dni */
+.rdp-weekday {
+  color: #6b7280;
+  font-size: 0.75rem;
+  font-weight: 500;
+  height: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+/* Dnevi v mesecu */
+.rdp-day {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  color: #374151;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.rdp-day:hover {
+  background-color: rgba(44, 74, 59, 0.1);
+  color: #2C4A3B;
+}
+
+/* Današnji dan */
+.rdp-day_today {
+  font-weight: 700;
+  color: #C8956C;
+}
+
+/* Izbrani datum/range */
+.rdp-day_selected,
+.rdp-day_range_start,
+.rdp-day_range_end {
+  background-color: #2C4A3B;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgba(44, 74, 59, 0.2);
+}
+.rdp-day_selected:hover,
+.rdp-day_range_start:hover,
+.rdp-day_range_end:hover {
+  background-color: #1B3A2A;
+  color: #ffffff;
+}
+
+/* Sredina rangea */
+.rdp-day_range_middle {
+  background-color: rgba(44, 74, 59, 0.1);
+  color: #2C4A3B;
+  border-radius: 0;
+}
+
+/* Zasedeni/onemogočeni dnevi */
+.rdp-day_disabled {
+  color: #d1d5db;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+.rdp-day_disabled:hover {
+  background-color: transparent;
+}
+
+/* Zunanji dnevi */
+.rdp-day_outside {
+  color: #9ca3af;
+}

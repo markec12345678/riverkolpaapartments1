@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Kontakt | River Kolpa Apartments">
+  <Header />
+  
+  <main id="main-content" class="pt-20">
+    <!-- HERO -->
+    <section class="bg-[#2C4A3B] text-[#FDFBF7] py-20 text-center">
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Kontakt</h1>
+      <p class="text-[#FDFBF7]/70 max-w-lg mx-auto">Kontaktirajte Majdo za rezervacije in vprašanja.</p>
+    </section>
+
+    <!-- KONTAKTNI PODATKI -->
+    <section class="section-padding bg-[#FDFBF7]">
+      <div class="container-site max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <!-- LEVO: Podatki -->
+          <div>
+            <h2 class="font-display text-2xl text-[#2C4A3B] mb-6">Kontaktni podatki</h2>
+            
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-[#2C4A3B]/10 flex items-center justify-center shrink-0">
+                  📧
+                </div>
+                <div>
+                  <h3 class="font-medium text-[#1A1A1A]">Email</h3>
+                  <a href="mailto:majda.pezdirc@gmail.com" class="text-[#2C4A3B] hover:underline">majda.pezdirc@gmail.com</a>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-[#2C4A3B]/10 flex items-center justify-center shrink-0">
+                  📞
+                </div>
+                <div>
+                  <h3 class="font-medium text-[#1A1A1A]">Telefon</h3>
+                  <a href="tel:+38640858732" class="text-[#2C4A3B] hover:underline">+386 40 858 732</a>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-[#2C4A3B]/10 flex items-center justify-center shrink-0">
+                  💬
+                </div>
+                <div>
+                  <h3 class="font-medium text-[#1A1A1A]">WhatsApp</h3>
+                  <a href="https://wa.me/38640858732" target="_blank" rel="noopener noreferrer" class="text-[#2C4A3B] hover:underline">Pošlji sporočilo</a>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 rounded-full bg-[#2C4A3B]/10 flex items-center justify-center shrink-0">
+                  📍
+                </div>
+                <div>
+                  <h3 class="font-medium text-[#1A1A1A]">Naslov</h3>
+                  <p class="text-[#6B705C]">Griblje, Bela krajina<br/>Slovenija</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- SOCIAL -->
+            <div class="mt-8 pt-8 border-t border-[#E2E0D8]">
+              <h3 class="font-medium text-[#1A1A1A] mb-4">Sledite nam</h3>
+              <div class="flex gap-4">
+                <a href="https://www.booking.com/hotel/si/holiday-house-kolpa.html" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-[#F3F1EC] flex items-center justify-center text-[#2C4A3B] hover:bg-[#2C4A3B] hover:text-[#FDFBF7] transition-colors">
+                  🏨
+                </a>
+                <a href="https://www.instagram.com/riverkolpa" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-[#F3F1EC] flex items-center justify-center text-[#2C4A3B] hover:bg-[#2C4A3B] hover:text-[#FDFBF7] transition-colors">
+                  📸
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- DESNO: Obrazec -->
+          <div class="bg-[#F3F1EC] rounded-2xl p-8">
+            <h2 class="font-display text-2xl text-[#2C4A3B] mb-6">Pošljite povpraševanje</h2>
+            
+            <form class="space-y-4" action="https://formsubmit.co/majda.pezdirc@gmail.com" method="POST">
+              <div>
+                <label for="name" class="block text-sm font-medium text-[#1A1A1A] mb-1">Ime in priimek</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-[#E2E0D8] bg-[#FDFBF7] text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#2C4A3B] focus:border-transparent"
+                  placeholder="Janez Novak"
+                />
+              </div>
+              
+              <div>
+                <label for="email" class="block text-sm font-medium text-[#1A1A1A] mb-1">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-3 rounded-xl border border-[#E2E0D8] bg-[#FDFBF7] text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#2C4A3B] focus:border-transparent"
+                  placeholder="janez@example.com"
+                />
+              </div>
+              
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="checkin" class="block text-sm font-medium text-[#1A1A1A] mb-1">Prihod</label>
+                  <input
+                    type="date"
+                    id="checkin"
+                    name="checkin"
+                    class="w-full px-4 py-3 rounded-xl border border-[#E2E0D8] bg-[#FDFBF7] text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#2C4A3B] focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label for="checkout" class="block text-sm font-medium text-[#1A1A1A] mb-1">Odhod</label>
+                  <input
+                    type="date"
+                    id="checkout"
+                    name="checkout"
+                    class="w-full px-4 py-3 rounded-xl border border-[#E2E0D8] bg-[#FDFBF7] text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#2C4A3B] focus:border-transparent"
+                  />
+                </div>
+              </div>
+              
+              <div>
+                <label for="guests" class="block text-sm font-medium text-[#1A1A1A] mb-1">Število gostov</label>
+                <select
+                  id="guests"
+                  name="guests"
+                  class="w-full px-4 py-3 rounded-xl border border-[#E2E0D8] bg-[#FDFBF7] text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#2C4A3B] focus:border-transparent"
+                >
+                  <option value="1">1 oseba</option>
+                  <option value="2" selected>2 osebi</option>
+                  <option value="3">3 osebe</option>
+                  <option value="4">4 osebe</option>
+                  <option value="5">5 oseb</option>
+                  <option value="6">6 oseb</option>
+                  <option value="7">7 oseb</option>
+                </select>
+              </div>
+              
+              <div>
+                <label for="message" class="block text-sm font-medium text-[#1A1A1A] mb-1">Sporočilo</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  class="w-full px-4 py-3 rounded-xl border border-[#E2E0D8] bg-[#FDFBF7] text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#2C4A3B] focus:border-transparent resize-none"
+                  placeholder="Imate kakšno posebno željo?"
+                ></textarea>
+              </div>
+              
+              <button
+                type="submit"
+                class="w-full bg-[#2C4A3B] text-[#FDFBF7] px-6 py-4 rounded-full font-bold hover:shadow-lg hover:shadow-[#2C4A3B]/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+              >
+                Pošlji povpraševanje
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ZEMLJEVID -->
+    <section class="section-padding bg-[#F3F1EC]/30">
+      <div class="container-site max-w-4xl mx-auto">
+        <h2 class="font-display text-3xl text-[#2C4A3B] mb-8 text-center">Kje nas najdete</h2>
+        <div class="rounded-2xl overflow-hidden shadow-xl">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800!2d15.21!3d45.54!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDMyJzI0LjAiTiAxNcKwMTInMzYuMCJF!5e0!3m2!1sen!2ssi!4v1"
+            width="100%"
+            height="400"
+            style="border: 0"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Lokacija apartmajev River Kolpa na Google Maps"
+          />
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Layout>

@@ -1,0 +1,55 @@
+---
+/**
+ * Calendar Loading Skeleton
+ * Shimmer placeholder shown while React island loads
+ */
+---
+
+<div class="premium-calendar-container animate-pulse" aria-hidden="true">
+  <!-- Title skeleton -->
+  <div class="h-8 bg-gray-200 rounded-lg w-48 mx-auto mb-6 skeleton-shimmer"></div>
+  
+  <!-- Calendar header skeleton -->
+  <div class="flex items-center justify-between mb-4">
+    <div class="h-8 w-8 bg-gray-200 rounded-full skeleton-shimmer"></div>
+    <div class="h-6 bg-gray-200 rounded w-32 skeleton-shimmer"></div>
+    <div class="h-8 w-8 bg-gray-200 rounded-full skeleton-shimmer"></div>
+  </div>
+  
+  <!-- Weekday headers skeleton -->
+  <div class="grid grid-cols-7 gap-2 mb-2">
+    {Array(7).fill(0).map(() => (
+      <div class="h-4 bg-gray-150 rounded skeleton-shimmer"></div>
+    ))}
+  </div>
+  
+  {/* Calendar grid skeleton - 6 rows */}
+  {Array(6).fill(0).map(() => (
+    <div class="grid grid-cols-7 gap-1 mb-1">
+      {Array(7).fill(0).map((_, i) => (
+        <div class={`h-10 rounded-full skeleton-shimmer ${Math.random() > 0.3 ? 'bg-gray-150' : 'bg-gray-100'}`}></div>
+      ))}
+    </div>
+  ))}
+  
+  <!-- CTA skeleton -->
+  <div class="mt-6 h-12 bg-gray-200 rounded-full w-full skeleton-shimmer"></div>
+</div>
+
+<style>
+  .skeleton-shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  /* Hide skeleton when real calendar loads */
+  .premium-calendar-container:has(+ .rdp-root) {
+    display: none;
+  }
+</style>

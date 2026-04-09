@@ -1,0 +1,50 @@
+---
+// Weather Widget Component
+// Uses free Open-Meteo API (No key required)
+---
+
+<div id="weather-widget" class="glass rounded-2xl p-4 flex items-center gap-4 max-w-sm mx-auto mb-8">
+  <div class="text-4xl" id="weather-icon">🌤️</div>
+  <div>
+    <p class="text-xs text-text-muted uppercase tracking-wider">Vreme v Beli Krajini</p>
+    <div class="flex items-end gap-2">
+      <span id="weather-temp" class="text-2xl font-bold text-primary">--°C</span>
+      <span id="weather-desc" class="text-sm text-text-muted mb-1">Nalaganje...</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Bela Krajina Coordinates
+  const LAT = 45.54;
+  const LON = 15.21;
+
+  async function fetchWeather() {
+    try {
+      const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current_weather=true`);
+      const data = await res.json();
+      const temp = Math.round(data.current_weather.temperature);
+      const code = data.current_weather.weathercode;
+
+      document.getElementById('weather-temp').innerText = `${temp}°C`;
+      
+      // Simple WMO code interpretation
+      let icon = '🌤️';
+      let desc = 'Delno oblačno';
+      
+      if (code <= 3) { icon = '☀️'; desc = 'Sončno'; }
+      else if (code <= 48) { icon = '☁️'; desc = 'Megleno'; }
+      else if (code <= 67) { icon = '🌧️'; desc = 'Dež'; }
+      else if (code <= 77) { icon = '❄️'; desc = 'Sneg'; }
+      else if (code <= 82) { icon = '🌧️'; desc = 'Pljusk'; }
+      else if (code <= 99) { icon = '⛈️'; desc = 'Nevihta'; }
+
+      document.getElementById('weather-icon').innerText = icon;
+      document.getElementById('weather-desc').innerText = desc;
+    } catch (e) {
+      console.error('Weather fetch failed', e);
+    }
+  }
+
+  fetchWeather();
+</script>

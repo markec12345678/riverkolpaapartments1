@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CalendarSkeleton from '../components/CalendarSkeleton.astro';
+import BookingCalendar from '../components/BookingCalendar.tsx';
+
+const PROPERTY_IMAGES = {
+  terrace: "/images/booking/terrace.jpg",
+  bedroom1: "/images/booking/bedroom1.jpg",
+  bathroom: "/images/booking/bathroom.jpg",
+  garden: "/images/booking/garden.jpg",
+  pergola: "/images/booking/pergola.jpg",
+  bedroom2: "/images/booking/bedroom2.jpg",
+};
+
+const features = [
+  { icon: "🛏️", title: "Spalne sobe", desc: "2 spalnici (zakonska + družinska)" },
+  { icon: "", title: "Kopalnica", desc: "Zasebna s tušem in WC-jem" },
+  { icon: "🍳", title: "Kuhinja", desc: "Popolnoma opremljena z vsem potrebnim" },
+  { icon: "❄️", title: "Klima", desc: "Klimatska naprava v vseh prostorih" },
+  { icon: "📺", title: "Smart TV", desc: "Televizor s satelitskimi programi" },
+  { icon: "🌳", title: "Zasebni vrt", desc: "Urejen vrt s paviljonom in žarom" },
+  { icon: "🅿️", title: "Parking", desc: "Brezplačen zaseben parking" },
+  { icon: "📶", title: "Wi-Fi", desc: "Brezplačen brezžični internet" },
+];
+---
+
+<Layout title="Apartma | River Kolpa Apartments">
+  <Header />
+  
+  <main id="main-content" class="pt-20">
+    <!-- HERO -->
+    <section class="bg-[#2C4A3B] text-[#FDFBF7] py-20 text-center">
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Vaš apartma</h1>
+      <p class="text-[#FDFBF7]/70 max-w-lg mx-auto">Prenovljeno zatočišče za do 7 gostov s polnim udobjem doma.</p>
+    </section>
+
+    <!-- OPIS -->
+    <section class="section-padding bg-[#FDFBF7]">
+      <div class="container-site max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+          <div>
+            <p class="text-[#2C4A3B] uppercase tracking-[0.2em] text-xs font-semibold mb-4">
+              Tradicionalna hiša, sodobno udobje
+            </p>
+            <h2 class="font-display text-3xl text-[#1A1A1A] mb-6 leading-tight">
+              Popolnoma prenovljena počitniška hiša
+            </h2>
+            <div class="space-y-4 text-[#6B705C] leading-relaxed">
+              <p>
+                Naša v celoti prenovljena tradicionalna hiša v mirni vasi Griblje ponuja
+                sodobno udobje v rustikalnem okolju. Z zasebnim vhodom, popolnoma opremljeno
+                kuhinjo in zasebnim vrtom se boste počutili kot doma.
+              </p>
+              <p>
+                Apartma sprejme do 7 gostov v dveh spalnicah (zakonska postelja + družinska
+                soba) z dodatnim ležiščem v dnevni sobi. Idealno za družine ali skupine prijateljev.
+              </p>
+            </div>
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-2xl">
+            <img
+              src={PROPERTY_IMAGES.terrace}
+              alt="Terasa apartmaja"
+              class="w-full aspect-[4/3] object-cover"
+              width={800}
+              height={600}
+            />
+          </div>
+        </div>
+
+        <!-- FUNKCIJE -->
+        <h2 class="font-display text-2xl text-[#2C4A3B] mb-8 text-center">Funkcionalnosti</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+          {features.map((f) => (
+            <div class="bg-[#F3F1EC] rounded-xl p-4 text-center">
+              <div class="text-2xl mb-2">{f.icon}</div>
+              <h3 class="font-medium text-[#1A1A1A] text-sm">{f.title}</h3>
+              <p class="text-[#6B705C] text-xs mt-1">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- GALERIJA -->
+        <h2 class="font-display text-2xl text-[#2C4A3B] mb-8 text-center">Fotografije</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {[
+            PROPERTY_IMAGES.bedroom1,
+            PROPERTY_IMAGES.bedroom2,
+            PROPERTY_IMAGES.bathroom,
+            PROPERTY_IMAGES.pergola,
+            PROPERTY_IMAGES.garden,
+            PROPERTY_IMAGES.terrace,
+          ].map((img, i) => (
+            <div class="rounded-xl overflow-hidden shadow-lg">
+              <img
+                src={img}
+                alt={`Apartma fotografija ${i + 1}`}
+                class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                width={400}
+                height={300}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- KOLEDAR -->
+    <section class="section-padding bg-[#F3F1EC]/30">
+      <div class="container-site max-w-4xl mx-auto">
+        <h2 class="font-display text-3xl text-[#2C4A3B] mb-8 text-center">Preveri razpoložljivost</h2>
+        <!-- Loading skeleton shown before React hydrates -->
+        <CalendarSkeleton />
+        <!-- Real calendar replaces skeleton when loaded -->
+        <div class="relative">
+          <BookingCalendar client:load />
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-[#2C4A3B] text-[#FDFBF7] text-center">
+      <div class="container-site max-w-2xl mx-auto px-6">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Pripravljeni na bivanje?</h2>
+        <p class="text-[#FDFBF7]/60 mb-8">Rezervirajte zdaj in uživajte v počitku ob Kolpi.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="https://www.booking.com/hotel/si/holiday-house-kolpa.html" target="_blank" rel="noopener noreferrer" class="bg-[#D4A373] text-[#2C4A3B] px-8 py-3 rounded-full font-bold hover:shadow-xl transition-all">
+            Rezerviraj na Booking.com
+          </a>
+          <a href="https://wa.me/38640858732" target="_blank" rel="noopener noreferrer" class="border border-[#FDFBF7]/40 text-[#FDFBF7] px-8 py-3 rounded-full font-medium hover:bg-[#FDFBF7]/10 transition-all">
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Layout>

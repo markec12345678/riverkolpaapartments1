@@ -1,0 +1,136 @@
+---
+const links = [
+  { label: { sl: 'Domov', en: 'Home' }, href: '/' },
+  { label: { sl: 'Apartma', en: 'Apartment' }, href: '/apartment' },
+  { label: { sl: 'Galerija', en: 'Gallery' }, href: '/gallery' },
+  { label: { sl: 'Cenik', en: 'Pricing' }, href: '/pricing' },
+  { label: { sl: 'Kontakt', en: 'Contact' }, href: '/contact' },
+];
+---
+
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 translate-y-0">
+  <div class="container-site h-16 md:h-20 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="font-display text-xl md:text-2xl font-bold text-white tracking-tight hover:opacity-80 transition-opacity drop-shadow-sm">
+      River Kolpa
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      {links.map(link => (
+        <a href={link.href} class="nav-link text-white/80 hover:text-white font-medium text-sm transition-colors drop-shadow-sm" data-sl={link.label.sl} data-en={link.label.en}>
+          {link.label.sl}
+        </a>
+      ))}
+      
+      <!-- Language Toggle -->
+      <button
+        id="lang-toggle"
+        class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-medium hover:bg-white/20 transition-all duration-200 cursor-pointer"
+        aria-label="Switch language"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <span id="lang-label">SL</span>
+      </button>
+
+      <a
+        href="https://www.booking.com/hotel/si/holiday-house-kolpa.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-accent text-primary px-5 py-2 rounded-full font-bold hover:bg-accent-light hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-sm"
+      >
+        <span data-sl="Rezerviraj" data-en="Book Now">Rezerviraj</span>
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 text-white cursor-pointer"
+      aria-label="Toggle mobile menu"
+      aria-expanded="false"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden glass-dark absolute top-full left-0 right-0 p-6 flex-col gap-4 border-t border-white/10">
+    {links.map(link => (
+      <a href={link.href} class="text-white/80 hover:text-white font-medium py-2" data-sl={link.label.sl} data-en={link.label.en}>
+        {link.label.sl}
+      </a>
+    ))}
+    <div class="flex items-center gap-4 pt-4 border-t border-white/10">
+      <button
+        id="mobile-lang-toggle"
+        class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white text-sm cursor-pointer"
+        aria-label="Switch language"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <span id="mobile-lang-label">SL</span>
+      </button>
+      <a href="https://www.booking.com/hotel/si/holiday-house-kolpa.html" target="_blank" class="flex-1 bg-accent text-primary text-center px-4 py-2 rounded-full font-bold">
+        <span data-sl="Rezerviraj" data-en="Book Now">Rezerviraj</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Header Scroll Behavior
+  let lastScroll = 0;
+  const header = document.getElementById('site-header');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    // Background on scroll
+    if (currentScroll > 50) {
+      header.classList.add('bg-primary/90', 'backdrop-blur-xl', 'shadow-md');
+      header.classList.remove('bg-transparent');
+    } else {
+      header.classList.remove('bg-primary/90', 'backdrop-blur-xl', 'shadow-md');
+      header.classList.add('bg-transparent');
+    }
+
+    // Hide/Show on scroll direction
+    if (currentScroll > lastScroll && currentScroll > 100) {
+      header.classList.add('-translate-y-full');
+    } else {
+      header.classList.remove('-translate-y-full');
+    }
+    lastScroll = currentScroll;
+  });
+
+  // Mobile Menu Toggle
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+  });
+
+  // Language Toggle Logic
+  let currentLang = 'sl';
+  const langToggle = document.getElementById('lang-toggle');
+  const mobileLangToggle = document.getElementById('mobile-lang-toggle');
+  const langLabel = document.getElementById('lang-label');
+  const mobileLangLabel = document.getElementById('mobile-lang-label');
+  const translatableElements = document.querySelectorAll('[data-sl]');
+
+  function setLanguage(lang: string) {
+    currentLang = lang;
+    const label = lang.toUpperCase();
+    if (langLabel) langLabel.textContent = label;
+    if (mobileLangLabel) mobileLangLabel.textContent = label;
+    
+    translatableElements.forEach(el => {
+      const text = el.getAttribute(`data-${lang}`);
+      if (text) el.textContent = text;
+    });
+  }
+
+  langToggle?.addEventListener('click', () => setLanguage(currentLang === 'sl' ? 'en' : 'sl'));
+  mobileLangToggle?.addEventListener('click', () => setLanguage(currentLang === 'sl' ? 'en' : 'sl'));
+</script>

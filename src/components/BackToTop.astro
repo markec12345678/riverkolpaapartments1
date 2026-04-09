@@ -1,0 +1,40 @@
+---
+/**
+ * Back to Top Button - appears after scrolling down
+ * Smooth scroll animation with fade-in transition
+ */
+---
+
+<button
+  id="back-to-top"
+  class="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full bg-primary text-white shadow-lg opacity-0 invisible translate-y-4 transition-all duration-300 hover:bg-primary-light hover:scale-110 hover:shadow-xl active:scale-95 cursor-pointer flex items-center justify-center"
+  aria-label="Back to top"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
+
+<script>
+  const backToTop = document.getElementById('back-to-top');
+  let isVisible = false;
+
+  function checkVisibility() {
+    const shouldShow = window.scrollY > 400;
+    if (shouldShow !== isVisible) {
+      isVisible = shouldShow;
+      if (isVisible) {
+        backToTop.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+        backToTop.classList.add('opacity-100', 'visible', 'translate-y-0');
+      } else {
+        backToTop.classList.add('opacity-0', 'invisible', 'translate-y-4');
+        backToTop.classList.remove('opacity-100', 'visible', 'translate-y-0');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', checkVisibility, { passive: true });
+  checkVisibility();
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>

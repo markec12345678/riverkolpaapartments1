@@ -1,0 +1,164 @@
+@import "tailwindcss";
+@import "aos/dist/aos.css";
+
+@theme {
+  /* Premium Color Palette */
+  --color-primary: #1B3A2A; /* Deep Forest */
+  --color-primary-light: #2C5E45;
+  --color-primary-dark: #0F241A;
+  
+  --color-accent: #C8956C; /* Warm Gold/Leather */
+  --color-accent-light: #E2B896;
+  
+  --color-background: #FAF9F7; /* Soft Cream */
+  --color-surface: #FFFFFF;
+  --color-surface-glass: rgba(255, 255, 255, 0.75);
+  
+  --color-text: #1A1A1A;
+  --color-text-muted: #5C6B5F;
+  --color-text-light: #8A9A8D;
+  
+  --color-border: rgba(0, 0, 0, 0.06);
+  --color-border-light: rgba(255, 255, 255, 0.2);
+  
+  /* Typography Scale */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-accent: "Lora", serif;
+  
+  /* Spacing & Layout */
+  --container-site: 1280px;
+  --radius-card: 1.5rem;
+  --radius-button: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-md: 0 8px 30px rgba(0,0,0,0.06);
+  --shadow-lg: 0 20px 50px rgba(0,0,0,0.08);
+  --shadow-glow: 0 0 40px rgba(27, 58, 42, 0.15);
+}
+
+/* Base Reset & Typography */
+body {
+  @apply bg-background text-text font-sans antialiased selection:bg-accent/20 selection:text-primary;
+  scroll-behavior: smooth;
+}
+
+/* Dark Mode Variables */
+:root {
+  --color-bg: #FAF9F7;
+  --color-surface: #FFFFFF;
+  --color-text: #1A1A1A;
+  --color-text-muted: #5C6B5F;
+  --color-border: rgba(0, 0, 0, 0.06);
+}
+
+html.dark {
+  --color-bg: #0F1419;
+  --color-surface: #1A1F2E;
+  --color-text: #E8E6E3;
+  --color-text-muted: #9CA3AF;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-background: #0F1419;
+  --color-surface-glass: rgba(26, 31, 46, 0.85);
+}
+
+html.dark body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6 {
+  color: var(--color-text);
+}
+
+html.dark .bg-background { background-color: var(--color-bg); }
+html.dark .bg-surface { background-color: var(--color-surface); }
+html.dark .bg-white { background-color: var(--color-surface); }
+html.dark .text-text { color: var(--color-text); }
+html.dark .text-text-muted { color: var(--color-text-muted); }
+html.dark .text-primary { color: var(--color-text); }
+html.dark .border-border { border-color: var(--color-border); }
+html.dark .bg-\[\#F3F1EC\] { background-color: rgba(26, 31, 46, 0.5); }
+html.dark .bg-\[\#FDFBF7\] { background-color: var(--color-surface); }
+html.dark .bg-\[\#F9F8F6\] { background-color: var(--color-surface); }
+html.dark .bg-\[\#FDFBF7\]\/30 { background-color: rgba(26, 31, 46, 0.3); }
+html.dark .text-\[\#1A1A1A\] { color: var(--color-text); }
+html.dark .text-\[\#6B705C\] { color: var(--color-text-muted); }
+html.dark .border-\[\#E2E0D8\] { border-color: var(--color-border); }
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-display font-semibold tracking-tight text-primary;
+}
+
+a { @apply transition-colors duration-200; }
+button { @apply transition-all duration-200 cursor-pointer; }
+img { @apply max-w-full h-auto; }
+
+/* Utility Classes */
+@utility container-site {
+  @apply max-w-[--container-site] mx-auto px-5 sm:px-8 lg:px-12;
+}
+
+@utility section-padding {
+  @apply py-20 md:py-28 lg:py-36;
+}
+
+@utility glass {
+  @apply bg-surface-glass backdrop-blur-xl border border-border-light shadow-md;
+}
+
+@utility glass-dark {
+  background: rgba(27, 58, 42, 0.85);
+  @apply backdrop-blur-xl border border-white/10 shadow-lg;
+}
+
+@utility text-gradient {
+  @apply bg-gradient-to-br from-primary via-primary-light to-accent bg-clip-text text-transparent;
+}
+
+@utility card-hover {
+  @apply hover:shadow-lg hover:-translate-y-1 transition-all duration-300;
+}
+
+@utility btn-primary {
+  @apply bg-primary text-white px-7 py-3.5 rounded-full font-medium 
+         hover:bg-primary-light hover:shadow-lg hover:shadow-primary/20 
+         hover:scale-[1.02] active:scale-[0.98] transition-all duration-200;
+}
+
+@utility btn-outline {
+  @apply border border-white/30 text-white px-7 py-3.5 rounded-full font-medium 
+         hover:bg-white/10 hover:border-white/50 transition-all duration-200;
+}
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float { animation: float 4s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* AOS Customization */
+[data-aos] {
+  will-change: transform, opacity;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { 
+  background: var(--color-primary-light); 
+  border-radius: 99px; 
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }

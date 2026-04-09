@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CalendarSkeleton from '../components/CalendarSkeleton.astro';
+import BookingCalendar from '../components/BookingCalendar.tsx';
+
+const PROPERTY_IMAGES = {
+  terrace: "/images/booking/terrace.jpg",
+  bedroom1: "/images/booking/bedroom1.jpg",
+  bathroom: "/images/booking/bathroom.jpg",
+  garden: "/images/booking/garden.jpg",
+};
+---
+
+<Layout title="Cenik & Rezervacija | River Kolpa Apartments">
+  <Header />
+  
+  <main id="main-content" class="pt-20">
+    {/* HERO */}
+    <section class="bg-[#2C4A3B] text-[#FDFBF7] py-20 text-center">
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Cenik & Rezervacija</h1>
+      <p class="text-[#FDFBF7]/70 max-w-lg mx-auto">Izberite termine in rezervirajte vaš pobeg ob reki Kolpi.</p>
+    </section>
+
+    {/* CENIK */}
+    <section class="section-padding bg-[#FDFBF7]">
+      <div class="container-site max-w-4xl mx-auto">
+        <h2 class="font-display text-3xl text-[#2C4A3B] mb-8 text-center">Cene po sezonah</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          <div class="bg-[#F3F1EC] rounded-2xl p-6 border border-[#E2E0D8]">
+            <h3 class="font-display text-xl font-semibold text-[#2C4A3B] mb-2">🌸 Pomlad/Jesen</h3>
+            <p class="text-[#6B705C] text-sm mb-4">Marec - Maj, September - November</p>
+            <div class="space-y-2">
+              <div class="flex justify-between">
+                <span class="text-[#1A1A1A]">2 osebi / noč</span>
+                <span class="font-bold text-[#2C4A3B]">70€</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[#1A1A1A]">3-4 osebe / noč</span>
+                <span class="font-bold text-[#2C4A3B]">90€</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[#1A1A1A]">5-7 oseb / noč</span>
+                <span class="font-bold text-[#2C4A3B]">120€</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-[#F3F1EC] rounded-2xl p-6 border border-[#E2E0D8] relative overflow-hidden">
+            <div class="absolute top-4 right-4 bg-[#D4A373] text-[#2C4A3B] text-xs font-bold px-3 py-1 rounded-full">PRILJUBLJENO</div>
+            <h3 class="font-display text-xl font-semibold text-[#2C4A3B] mb-2">☀️ Poletje</h3>
+            <p class="text-[#6B705C] text-sm mb-4">Junij - Avgust</p>
+            <div class="space-y-2">
+              <div class="flex justify-between">
+                <span class="text-[#1A1A1A]">2 osebi / noč</span>
+                <span class="font-bold text-[#2C4A3B]">90€</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[#1A1A1A]">3-4 osebe / noč</span>
+                <span class="font-bold text-[#2C4A3B]">120€</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[#1A1A1A]">5-7 oseb / noč</span>
+                <span class="font-bold text-[#2C4A3B]">150€</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[#F3F1EC] rounded-2xl p-6 border border-[#E2E0D8]">
+          <h3 class="font-display text-xl font-semibold text-[#2C4A3B] mb-4">❄️ Zima</h3>
+          <p class="text-[#6B705C] text-sm mb-4">December - Februar</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="flex justify-between sm:block">
+              <span class="text-[#1A1A1A]">2 osebi / noč</span>
+              <span class="font-bold text-[#2C4A3B] sm:block">60€</span>
+            </div>
+            <div class="flex justify-between sm:block">
+              <span class="text-[#1A1A1A]">3-4 osebe / noč</span>
+              <span class="font-bold text-[#2C4A3B] sm:block">80€</span>
+            </div>
+            <div class="flex justify-between sm:block">
+              <span class="text-[#1A1A1A]">5-7 oseb / noč</span>
+              <span class="font-bold text-[#2C4A3B] sm:block">100€</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* KOLEDAR */}
+    <section class="section-padding bg-[#F3F1EC]/30">
+      <div class="container-site max-w-4xl mx-auto">
+        <h2 class="font-display text-3xl text-[#2C4A3B] mb-8 text-center">Koledar zasedenosti</h2>
+        <CalendarSkeleton />
+        <div class="relative">
+          <BookingCalendar client:load />
+        </div>
+        
+        <div class="mt-8 text-center text-[#6B705C] text-sm">
+          <p class="inline-flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg> <span class="bg-[#2C4A3B] text-[#FDFBF7] px-2 py-0.5 rounded">Temno zeleno</span> = Izbrani termini</p>
+          <p class="mt-1 inline-flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg> <span class="bg-[#D4A373] text-[#2C4A3B] px-2 py-0.5 rounded">Zlato</span> = Današnji dan</p>
+          <p class="mt-1 inline-flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> <span style="text-decoration: line-through;">Prečrtano</span> = Zasedeni termini</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIJA -->
+    <section class="section-padding bg-[#FDFBF7]">
+      <div class="container-site max-w-4xl mx-auto">
+        <h2 class="font-display text-3xl text-[#2C4A3B] mb-8 text-center">Apartma v številkah</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div class="text-center p-4 bg-[#F3F1EC] rounded-xl">
+            <div class="text-3xl font-bold text-[#2C4A3B]">70m²</div>
+            <div class="text-[#6B705C] text-sm">Površina</div>
+          </div>
+          <div class="text-center p-4 bg-[#F3F1EC] rounded-xl">
+            <div class="text-3xl font-bold text-[#2C4A3B]">7</div>
+            <div class="text-[#6B705C] text-sm">Gostov</div>
+          </div>
+          <div class="text-center p-4 bg-[#F3F1EC] rounded-xl">
+            <div class="text-3xl font-bold text-[#2C4A3B]">2</div>
+            <div class="text-[#6B705C] text-sm">Spalnici</div>
+          </div>
+          <div class="text-center p-4 bg-[#F3F1EC] rounded-xl">
+            <div class="text-3xl font-bold text-[#2C4A3B]">9.8</div>
+            <div class="text-[#6B705C] text-sm">Booking ocena</div>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <img src={PROPERTY_IMAGES.terrace} alt="Terasa" class="rounded-xl object-cover aspect-[4/3]" />
+          <img src={PROPERTY_IMAGES.bedroom1} alt="Spalnica" class="rounded-xl object-cover aspect-[4/3]" />
+          <img src={PROPERTY_IMAGES.bathroom} alt="Kopalnica" class="rounded-xl object-cover aspect-[4/3]" />
+          <img src={PROPERTY_IMAGES.garden} alt="Vrt" class="rounded-xl object-cover aspect-[4/3]" />
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section class="py-20 bg-[#2C4A3B] text-[#FDFBF7] text-center">
+      <div class="container-site max-w-2xl mx-auto px-6">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Ste pripravljeni na rezervacijo?</h2>
+        <p class="text-[#FDFBF7]/60 mb-8">Kontaktirajte Majdo neposredno za najboljše cene.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="https://www.booking.com/hotel/si/holiday-house-kolpa.html" target="_blank" rel="noopener noreferrer" class="bg-[#D4A373] text-[#2C4A3B] px-8 py-3 rounded-full font-bold hover:shadow-xl hover:shadow-[#D4A373]/30 transition-all">
+            Rezerviraj na Booking.com
+          </a>
+          <a href="https://wa.me/38640858732" target="_blank" rel="noopener noreferrer" class="border border-[#FDFBF7]/40 text-[#FDFBF7] px-8 py-3 rounded-full font-medium hover:bg-[#FDFBF7]/10 transition-all">
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Layout>

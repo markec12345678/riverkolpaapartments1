@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://riverkolpa.si/sitemap-index.xml
+
+# Disallow API endpoints
+Disallow: /api/

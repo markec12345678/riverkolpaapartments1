@@ -1,0 +1,30 @@
+---
+/**
+ * Scroll Progress Indicator - thin bar at top of page showing scroll position
+ */
+---
+
+<div id="scroll-progress" class="fixed top-0 left-0 w-full h-1 z-[60] bg-transparent" aria-hidden="true">
+  <div id="scroll-progress-bar" class="h-full bg-accent w-0 transition-all duration-150"></div>
+</div>
+
+<script>
+  const progressBar = document.getElementById('scroll-progress-bar');
+  
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = `${progress}%`;
+    
+    // Hide at top, show when scrolling
+    if (scrollTop < 50) {
+      progressBar.style.opacity = '0';
+    } else {
+      progressBar.style.opacity = '1';
+    }
+  }
+  
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+</script>

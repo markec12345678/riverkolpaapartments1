@@ -1,0 +1,303 @@
+---
+import '../styles/globals.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title,
+  description = "Premium apartmaji ob reki Kolpi v Beli krajini. Popoln oddih za družine, pare in pustolovce.",
+  image = "/og-image.svg",
+  canonicalURL = "https://riverkolpa.si",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="sl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#1B3A2A" />
+
+    <!-- Accessibility: Skip to Content Link -->
+    <style is:inline>
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #C8956C;
+        color: #1B3A2A;
+        padding: 8px 16px;
+        z-index: 9999;
+        font-weight: bold;
+        border-radius: 0 0 8px 0;
+        transition: top 0.2s;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+    </style>
+
+    <!-- Performance: DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
+    <link rel="dns-prefetch" href="https://api.groq.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- SEO & Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="sl_SI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Hreflang for multilingual -->
+    <link rel="alternate" hreflang="sl" href={`${canonicalURL}?lang=sl`} />
+    <link rel="alternate" hreflang="en" href={`${canonicalURL}?lang=en`} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "River Kolpa Apartments",
+      "description": description,
+      "image": image.startsWith("http") ? image : `https://riverkolpa.si${image}`,
+      "url": "https://riverkolpa.si",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Griblje",
+        "addressRegion": "Bela krajina",
+        "addressCountry": "SI"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "45.6167",
+        "longitude": "15.2333"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "9.8",
+        "reviewCount": "50",
+        "bestRating": "10"
+      },
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Free WiFi" },
+        { "@type": "LocationFeatureSpecification", "name": "Free Parking" },
+        { "@type": "LocationFeatureSpecification", "name": "Air Conditioning" },
+        { "@type": "LocationFeatureSpecification", "name": "Pet Friendly" }
+      ],
+      "priceRange": "€€",
+      "currenciesAccepted": "EUR",
+      "paymentAccepted": "Credit Card, Cash",
+      "numberOfRooms": "2",
+      "occupancy": {
+        "@type": "QuantitativeValue",
+        "maxValue": 7,
+        "unitText": "guests"
+      }
+    })} />
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" as="style" />
+
+    <!-- View Transitions API -->
+    <script is:inline>
+      // Check for View Transitions support
+      if (document.startViewTransition) {
+        document.addEventListener('astro:page-load', () => {
+          // Page transition handled by Astro
+        });
+      }
+    </script>
+
+    <style is:global>
+      /* View Transitions */
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation-duration: 0.3s;
+      }
+    </style>
+
+    <title>{title}</title>
+  </head>
+  <body class="overflow-x-hidden">
+    <!-- Skip to Content Link (Accessibility) -->
+    <a href="#main-content" class="skip-link" data-sl="Preskoči na vsebino" data-en="Skip to content">Preskoči na vsebino</a>
+
+    <!-- View Transition Wrapper -->
+    <div id="view-transition" class="min-h-screen">
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress" class="fixed top-0 left-0 w-full h-1 z-[60] bg-transparent" aria-hidden="true">
+      <div id="scroll-progress-bar" class="h-full bg-accent w-0 transition-all duration-150"></div>
+    </div>
+
+    <slot />
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <button
+      id="dark-mode-toggle"
+      class="fixed bottom-24 left-6 z-50 w-12 h-12 rounded-full bg-surface border border-border shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center cursor-pointer"
+      aria-label="Toggle dark mode"
+    >
+      <svg id="dark-mode-sun" class="hidden w-5 h-5 text-accent" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+      <svg id="dark-mode-moon" class="w-5 h-5 text-primary" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button
+      id="back-to-top"
+      class="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full bg-primary text-white shadow-lg opacity-0 invisible translate-y-4 transition-all duration-300 hover:bg-primary-light hover:scale-110 hover:shadow-xl active:scale-95 cursor-pointer flex items-center justify-center"
+      aria-label="Back to top"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <!-- WhatsApp Floating Button -->
+    <a
+      href="https://wa.me/38640858732"
+      target="_blank"
+      rel="noopener noreferrer"
+      id="whatsapp-float"
+      class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group"
+      aria-label="Contact us on WhatsApp"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="group-hover:scale-105 transition-transform"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- AOS Init & Global Scripts -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        // AOS Init
+        if (typeof AOS !== 'undefined') {
+          AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50
+          });
+        }
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+        });
+
+        // Scroll Progress Bar
+        const progressBar = document.getElementById('scroll-progress-bar');
+        function updateProgress() {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+          progressBar.style.width = `${progress}%`;
+          progressBar.style.opacity = scrollTop < 50 ? '0' : '1';
+        }
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+
+        // Back to Top Button
+        const backToTop = document.getElementById('back-to-top');
+        let isVisible = false;
+        function checkBackToTop() {
+          const shouldShow = window.scrollY > 400;
+          if (shouldShow !== isVisible) {
+            isVisible = shouldShow;
+            if (isVisible) {
+              backToTop.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+              backToTop.classList.add('opacity-100', 'visible', 'translate-y-0');
+            } else {
+              backToTop.classList.add('opacity-0', 'invisible', 'translate-y-4');
+              backToTop.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            }
+          }
+        }
+        window.addEventListener('scroll', checkBackToTop, { passive: true });
+        checkBackToTop();
+        backToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Dark Mode Toggle
+        const darkToggle = document.getElementById('dark-mode-toggle');
+        const sunIcon = document.getElementById('dark-mode-sun');
+        const moonIcon = document.getElementById('dark-mode-moon');
+
+        function getInitialMode() {
+          const saved = localStorage.getItem('dark-mode');
+          if (saved) return saved;
+          return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function applyMode(mode) {
+          if (mode === 'dark') {
+            document.documentElement.classList.add('dark');
+            sunIcon.classList.remove('hidden');
+            moonIcon.classList.add('hidden');
+          } else {
+            document.documentElement.classList.remove('dark');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+          }
+        }
+
+        applyMode(getInitialMode());
+
+        darkToggle.addEventListener('click', () => {
+          const isDark = document.documentElement.classList.contains('dark');
+          const newMode = isDark ? 'light' : 'dark';
+          localStorage.setItem('dark-mode', newMode);
+          applyMode(newMode);
+        });
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+          if (!localStorage.getItem('dark-mode')) {
+            applyMode(e.matches ? 'dark' : 'light');
+          }
+        });
+      });
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js" is:inline></script>
+
+    <!-- WhatsApp Pulse Animation -->
+    <style is:inline>
+      #whatsapp-float::before {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        background: #25D366;
+        opacity: 0;
+        animation: wa-pulse 2s ease-in-out infinite;
+        z-index: -1;
+      }
+      @keyframes wa-pulse {
+        0%, 100% { transform: scale(1); opacity: 0.4; }
+        50% { transform: scale(1.1); opacity: 0; }
+      }
+    </style>
+  </body>
+</html>

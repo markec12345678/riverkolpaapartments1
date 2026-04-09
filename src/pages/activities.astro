@@ -1,0 +1,151 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+
+const activities = [
+  {
+    icon: "waves",
+    title: "Kajakaštvo in kanu",
+    category: "VODA",
+    description: "Veslarite po kristalno čisti Kolpi z izposojo v bližini. Popolno za začetnike in izkušene.",
+    difficulty: "Enostavno",
+    duration: "2-4 ure"
+  },
+  {
+    icon: "bike",
+    title: "Kolesarjenje ob reki",
+    category: "KOLESARJENJE",
+    description: "Prenesite GPX poti za vse ravni skozi Belo krajino. Utrjene makadamske poti.",
+    difficulty: "Srednje",
+    duration: "3-5 ur"
+  },
+  {
+    icon: "mountain",
+    title: "Pohodništvo",
+    category: "POHODNIŠTVO",
+    description: "Označene poti skozi gozdove, travnike in Krajinski park Lahinja.",
+    difficulty: "Enostavno",
+    duration: "2-6 ur"
+  },
+  {
+    icon: "fish",
+    title: "Ribolov",
+    category: "VODA",
+    description: "Kolpa je bogata z ribami. Potrebna dovolilnica, izposoja opreme v bližini.",
+    difficulty: "Enostavno",
+    duration: "Cel dan"
+  },
+  {
+    icon: "swim",
+    title: "Kopanje v Kolpi",
+    category: "VODA",
+    description: "Kristalno čista reka s temperaturo do 28°C poleti. Peščene plaže v bližini.",
+    difficulty: "Enostavno",
+    duration: "Kot želite"
+  },
+  {
+    icon: "wheat",
+    title: "Obisk lokalnih kmetij",
+    category: "LOKALNO",
+    description: "Kupujte neposredno od kmetov — mleko, med, jajca, sadje, domače žganje.",
+    difficulty: "Enostavno",
+    duration: "1-2 uri"
+  },
+];
+
+const gpxRoutes = [
+  { name: "Kolpa kolesarska pot", distance: "15 km", difficulty: "Enostavna" },
+  { name: "Lahinja pohodniška pot", distance: "8 km", difficulty: "Srednja" },
+  { name: "Vinica - Gradac", distance: "22 km", difficulty: "Zahtevna" },
+];
+---
+
+<Layout title="Aktivnosti | River Kolpa Apartments">
+  <Header />
+  
+  <main id="main-content" class="pt-20">
+    <!-- HERO -->
+    <section class="bg-[#2C4A3B] text-[#FDFBF7] py-20 text-center">
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Aktivnosti v Beli krajini</h1>
+      <p class="text-[#FDFBF7]/70 max-w-lg mx-auto">Pustolovščine vas čakajo pred vrati. Od vodnih športov do gozdnih poti.</p>
+    </section>
+
+    <!-- AKTIVNOSTI -->
+    <section class="section-padding bg-[#FDFBF7]">
+      <div class="container-site">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {activities.map((activity) => (
+            <div class="bg-[#F3F1EC] rounded-2xl p-6 border border-[#E2E0D8] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer">
+              <div class="text-primary/70 mb-4">
+                <Icon name={activity.icon} />
+              </div>
+              <p class="text-[#2C4A3B] text-xs font-semibold uppercase tracking-wider mb-2">{activity.category}</p>
+              <h3 class="font-display text-xl text-[#1A1A1A] mb-2">{activity.title}</h3>
+              <p class="text-[#6B705C] text-sm leading-relaxed mb-4">{activity.description}</p>
+              <div class="flex items-center gap-4 text-xs text-[#6B705C]">
+                <span class="bg-[#FDFBF7] px-2 py-1 rounded flex items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  {activity.duration}
+                </span>
+                <span class="bg-[#FDFBF7] px-2 py-1 rounded flex items-center gap-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94l1.5-2.34A7 7 0 0 0 6.94 12h2.56a4.5 4.5 0 0 1 4.12-4.5h-2.12a7 7 0 0 0-6.56 6.56H8.5"/><path d="M14 2v4"/><path d="M18 4l-2 2"/></svg>
+                  {activity.difficulty}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- GPX POTI -->
+    <section class="section-padding bg-[#F3F1EC]/30">
+      <div class="container-site max-w-3xl mx-auto">
+        <h2 class="font-display text-3xl text-[#2C4A3B] mb-8 text-center">Kolesarske in pohodniške poti</h2>
+        <div class="bg-[#FDFBF7] rounded-2xl overflow-hidden border border-[#E2E0D8]">
+          <table class="w-full">
+            <thead class="bg-[#2C4A3B] text-[#FDFBF7]">
+              <tr>
+                <th class="px-6 py-4 text-left font-medium">Pot</th>
+                <th class="px-6 py-4 text-left font-medium">Razdalja</th>
+                <th class="px-6 py-4 text-left font-medium">Zahtevnost</th>
+              </tr>
+            </thead>
+            <tbody>
+              {gpxRoutes.map((route, i) => (
+                <tr class="border-t border-[#E2E0D8] hover:bg-[#F3F1EC] transition-colors">
+                  <td class="px-6 py-4 text-[#1A1A1A] font-medium">{route.name}</td>
+                  <td class="px-6 py-4 text-[#6B705C]">{route.distance}</td>
+                  <td class="px-6 py-4 text-[#6B705C]">{route.difficulty}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-center text-[#6B705C] text-sm mt-6">
+          📥 GPX datoteke so na voljo na recepciji. Vprašajte Majdo!
+        </p>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section class="py-20 bg-[#2C4A3B] text-[#FDFBF7] text-center">
+      <div class="container-site max-w-2xl mx-auto px-6">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Potrebujete nasvet?</h2>
+        <p class="text-[#FDFBF7]/60 mb-8">Majda vam z veseljem svetuje glede najljubših aktivnosti v okolici.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="https://wa.me/38640858732" target="_blank" rel="noopener noreferrer" class="bg-[#D4A373] text-[#2C4A3B] px-8 py-3 rounded-full font-bold hover:shadow-xl transition-all">
+            💬 Vprašajte Majdo
+          </a>
+          <a href="/contact" class="border border-[#FDFBF7]/40 text-[#FDFBF7] px-8 py-3 rounded-full font-medium hover:bg-[#FDFBF7]/10 transition-all">
+            Kontaktiraj nas
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Layout>

@@ -1,0 +1,129 @@
+---
+/**
+ * FAQ Accordion Component
+ * Common guest questions with JSON-LD FAQPage schema
+ */
+
+const faqs = [
+  {
+    question: {
+      sl: "Kako pridem do River Kolpa Apartments?",
+      en: "How do I get to River Kolpa Apartments?"
+    },
+    answer: {
+      sl: "Nahajamo se v vasi Griblje, Bela krajina, Slovenija, le 500m od reke Kolpe. Iz Ljubljane je približno 1h vožnje, iz Zagreba pa 1,5h. Brezplačen parking je na voljo pred hišo.",
+      en: "We are located in the village of Griblje, White Carniola, Slovenia, just 500m from the Kolpa River. It's about 1 hour drive from Ljubljana and 1.5 hours from Zagreb. Free parking is available in front of the house."
+    }
+  },
+  {
+    question: {
+      sl: "Ali so hišni ljubljenčki dovoljeni?",
+      en: "Are pets allowed?"
+    },
+    answer: {
+      sl: "Da, hišni ljubljenčki so dobrodošli! Prosim, obvestite nas vnaprej, da uredimo vse potrebno za vašega kosmatinca.",
+      en: "Yes, pets are welcome! Please let us know in advance so we can prepare everything for your furry friend."
+    }
+  },
+  {
+    question: {
+      sl: "Kakšna je oprema apartmaja?",
+      en: "What amenities does the apartment have?"
+    },
+    answer: {
+      sl: "Apartma ima popolnoma opremljeno kuhinjo, klimo, Wi-Fi, Smart TV, pralni stroj, sušilnik za lase, likalnik, zunanji žar, ležalnike na vrtu in brezplačen parking. Posteljnina in brisače so vključeni.",
+      en: "The apartment features a fully equipped kitchen, air conditioning, Wi-Fi, Smart TV, washing machine, hairdryer, iron, outdoor grill, garden deck chairs, and free parking. Bed linen and towels are included."
+    }
+  },
+  {
+    question: {
+      sl: "Kdaj je prijava in odjava?",
+      en: "What are check-in and check-out times?"
+    },
+    answer: {
+      sl: "Prijava je možna od 15:00, odjava pa do 10:00. Za zgodnjo prijavo ali pozno odjavo nas prosim kontaktirajte vnaprej - po dogovoru je možno prilagoditi.",
+      en: "Check-in is from 3:00 PM, check-out by 10:00 AM. For early check-in or late check-out, please contact us in advance - we can accommodate by arrangement."
+    }
+  },
+  {
+    question: {
+      sl: "Ali je Kolpa primerna za kopanje otrok?",
+      en: "Is the Kolpa River safe for children to swim in?"
+    },
+    answer: {
+      sl: "Da! Kolpa je ena najbolj čistih rek v Evropi z nežnimi tokovi in plitvimi deli, idealnimi za otroke. Poleti doseže temperaturo do 28°C. Najbližje plaže so 500m stran.",
+      en: "Yes! The Kolpa is one of the cleanest rivers in Europe with gentle currents and shallow areas ideal for children. In summer it reaches temperatures up to 28°C. The nearest beaches are 500m away."
+    }
+  },
+  {
+    question: {
+      sl: "Kakšna je politika odpovedi?",
+      en: "What is the cancellation policy?"
+    },
+    answer: {
+      sl: "Brezplačna odpoved do 7 dni pred prihodom. Za odpovedi v zadnjem tednu se obračuna 50% cene rezervacije. Za natančne pogoje preverite Booking.com ali nas kontaktirajte neposredno.",
+      en: "Free cancellation up to 7 days before arrival. For cancellations within the last week, 50% of the booking price is charged. For exact terms, please check Booking.com or contact us directly."
+    }
+  }
+];
+---
+
+<section class="section-padding bg-background" id="faq">
+  <div class="container-site max-w-3xl mx-auto">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <p class="text-accent uppercase tracking-[0.25em] text-xs font-bold mb-3">
+        <span data-sl="Pogosta vprašanja" data-en="FAQ">Pogosta vprašanja</span>
+      </p>
+      <h2 class="font-display text-4xl md:text-5xl text-primary">
+        <span data-sl="Imate vprašanja?" data-en="Have questions?">Imate vprašanja?</span>
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq, i) => (
+        <details
+          class="group bg-surface rounded-2xl border border-border overflow-hidden transition-all duration-300 open:shadow-md cursor-pointer"
+          data-aos="fade-up"
+          data-aos-delay={i * 50}
+        >
+          <summary class="flex items-center justify-between p-6 text-primary font-semibold text-lg hover:bg-primary/5 transition-colors duration-200 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+            <span data-sl={faq.question.sl} data-en={faq.question.en}>{faq.question.sl}</span>
+            <svg class="w-5 h-5 text-primary/50 transition-transform duration-300 group-open:rotate-180 flex-shrink-0 ml-4" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="px-6 pb-6 text-text-muted leading-relaxed">
+            <p data-sl={faq.answer.sl} data-en={faq.answer.en}>{faq.answer.sl}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <div class="text-center mt-10">
+      <p class="text-text-muted mb-4">
+        <span data-sl="Ne najdete odgovora?" data-en="Can't find the answer?">Ne najdete odgovora?</span>
+      </p>
+      <a
+        href="https://wa.me/38640858732"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all cursor-pointer"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        <span data-sl="Vprašajte nas na WhatsApp" data-en="Ask us on WhatsApp">Vprašajte nas na WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- JSON-LD FAQPage Schema -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question.sl,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer.sl
+    }
+  }))
+})} />

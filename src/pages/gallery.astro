@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const galleryImages = [
+  "/images/booking/terrace.jpg",
+  "/images/booking/bedroom1.jpg",
+  "/images/booking/bathroom.jpg",
+  "/images/booking/garden.jpg",
+  "/images/booking/pergola.jpg",
+  "/images/booking/bedroom2.jpg",
+  "/images/booking/living-area.jpg",
+  "/images/booking/kitchen-full.jpg",
+];
+
+const galleryLabels = [
+  "Terasa s paviljonom",
+  "Spalnica 1",
+  "Kopalnica",
+  "Vrt",
+  "Pergola",
+  "Spalnica 2",
+  "Zunanji videz",
+  "Spalnica 3"
+];
+---
+
+<Layout title="Galerija | River Kolpa Apartments">
+  <Header />
+  
+  <main id="main-content" class="pt-20">
+    <!-- HERO -->
+    <section class="bg-[#2C4A3B] text-[#FDFBF7] py-20 text-center">
+      <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">Galerija</h1>
+      <p class="text-[#FDFBF7]/70 max-w-lg mx-auto">Oglejte si naš prenovljen apartma v Beli krajini.</p>
+    </section>
+
+    <!-- GALERIJA MREŽA -->
+    <section class="section-padding bg-[#FDFBF7]">
+      <div class="container-site">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {galleryImages.map((img, i) => (
+            <div class="group rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div class="aspect-[4/3] overflow-hidden">
+                <img
+                  src={img}
+                  alt={galleryLabels[i]}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                  width={600}
+                  height={450}
+                />
+              </div>
+              <div class="p-4 bg-[#FDFBF7]">
+                <p class="text-[#2C4A3B] font-medium text-sm">{galleryLabels[i]}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO SEKCIJA (Placeholder) -->
+    <section class="section-padding bg-[#F3F1EC]/30">
+      <div class="container-site text-center">
+        <h2 class="font-display text-3xl text-[#2C4A3B] mb-4">Video obisk</h2>
+        <p class="text-[#6B705C] mb-8 max-w-lg mx-auto">Poglejte si video predstavitev apartmaja in okolice.</p>
+        <div class="rounded-2xl overflow-hidden shadow-xl bg-[#1A1A1A] aspect-video flex items-center justify-center max-w-3xl mx-auto">
+          <div class="text-[#FDFBF7]/40 text-center">
+            <div class="text-6xl mb-4">🎥</div>
+            <p class="text-lg">Video prihaja kmalu...</p>
+            <p class="text-sm mt-2">Kontaktirajte nas za virtualni ogled.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section class="py-20 bg-[#2C4A3B] text-[#FDFBF7] text-center">
+      <div class="container-site max-w-2xl mx-auto px-6">
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Všeč vam je to kar vidite?</h2>
+        <p class="text-[#FDFBF7]/60 mb-8">Rezervirajte svoj termin še danes.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="https://www.booking.com/hotel/si/holiday-house-kolpa.html" target="_blank" rel="noopener noreferrer" class="bg-[#D4A373] text-[#2C4A3B] px-8 py-3 rounded-full font-bold hover:shadow-xl transition-all">
+            Rezerviraj zdaj
+          </a>
+          <a href="https://wa.me/38640858732" target="_blank" rel="noopener noreferrer" class="border border-[#FDFBF7]/40 text-[#FDFBF7] px-8 py-3 rounded-full font-medium hover:bg-[#FDFBF7]/10 transition-all">
+            💬 WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Layout>
