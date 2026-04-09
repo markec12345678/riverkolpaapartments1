@@ -11,3 +11,4 @@ screenshots.py
 *.log
 .vscode/
 .idea/
+.vercel
