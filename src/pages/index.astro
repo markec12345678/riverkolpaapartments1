@@ -58,64 +58,12 @@ const reviews = [
 ];
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="description" content="Premium apartmaji River Kolpa v Beli krajini. Sprostitev ob reki Kolpi, zunanji bazen, žar in neokrnjena narava. Rezervirajte svoj oddih zdaj!" />
-  <meta name="keywords" content="apartmaji Bela krajina, River Kolpa, počitnice Slovenija, Kolpa, najem počitniške hiše, wellness, narava" />
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://riverkolpa.si/" />
-  <meta property="og:title" content="River Kolpa Apartments | Premium Oddih v Beli Krajini" />
-  <meta property="og:description" content="Doživite neokrnjeno naravo Bele krajine. Luksuzni apartmaji ob reki Kolpi z vsemi ugodnostmi." />
-  <meta property="og:image" content="/images/terrace.png" />
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://riverkolpa.si/" />
-  <meta property="twitter:title" content="River Kolpa Apartments | Premium Oddih v Beli Krajini" />
-  <meta property="twitter:description" content="Doživite neokrnjeno naravo Bele krajine. Luksuzni apartmaji ob reki Kolpi z vsemi ugodnostmi." />
-  <meta property="twitter:image" content="/images/terrace.png" />
-
-  <!-- Structured Data (JSON-LD) for Google -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ApartmentComplex",
-      "name": "River Kolpa Apartments",
-      "description": "Premium apartmaji ob reki Kolpi v Beli krajini.",
-      "url": "https://riverkolpa.si/",
-      "telephone": "+38640858732",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Griblje",
-        "addressLocality": "Črnomelj",
-        "postalCode": "8340",
-        "addressCountry": "SI"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 45.54,
-        "longitude": 15.21
-      },
-      "image": "/images/terrace.png",
-      "priceRange": "€€",
-      "starRating": {
-        "@type": "Rating",
-        "ratingValue": "4.8",
-        "bestRating": "5"
-      },
-      "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Free WiFi" },
-        { "@type": "LocationFeatureSpecification", "name": "Air Conditioning" },
-        { "@type": "LocationFeatureSpecification", "name": "BBQ Grill" },
-        { "@type": "LocationFeatureSpecification", "name": "Garden" }
-      ]
-    }
-  </script>
-</head>
-
-<Layout title="River Kolpa Apartments | Premium Apartmaji Bela Krajina">
+<Layout
+  title="River Kolpa Apartments | Premium Apartmaji Bela Krajina"
+  description="Premium apartmaji River Kolpa v Beli krajini. Sprostitev ob reki Kolpi, zunanji bazen, žar in neokrnjena narava. Rezervirajte svoj oddih zdaj!"
+  image="/images/terrace.png"
+  canonicalURL="https://riverkolpa.si/"
+>
   <Header />
 
   <main id="main-content">
@@ -123,18 +71,18 @@ const reviews = [
     <section class="relative h-screen min-h-[700px] overflow-hidden flex items-center justify-center">
       <div class="absolute inset-0">
         <img src={heroImg} alt="Zunanja kuhinja z razgledom na vinograde in hribe" class="w-full h-full object-cover" width={1920} height={1080} />
-        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+        <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/70" />
       </div>
 
       <div class="relative z-10 text-center px-4 max-w-4xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
-        <p class="text-white/60 uppercase tracking-[0.3em] text-xs md:text-sm mb-6 font-medium">
+        <p class="text-white/80 uppercase tracking-[0.3em] text-xs md:text-sm mb-6 font-medium drop-shadow-md">
           <span data-sl="Bela krajina, Slovenija" data-en="White Carniola, Slovenia">Bela krajina, Slovenija</span>
         </p>
-        <h1 class="font-display text-6xl md:text-7xl lg:text-8xl text-white font-semibold mb-6 leading-[1.05]">
+        <h1 class="font-display text-6xl md:text-7xl lg:text-8xl text-white font-semibold mb-6 leading-[1.05] drop-shadow-[0_4px_12px_rgba(0,0,0,0.55)]">
           <span data-sl="Vaš rečni" data-en="Your riverside">Vaš rečni</span><br />
           <span class="italic font-accent font-normal text-accent-light">pobeg</span>
         </h1>
-        <p class="font-accent italic text-white/70 text-xl md:text-2xl mb-12 max-w-xl mx-auto">
+        <p class="font-accent italic text-white/85 text-xl md:text-2xl mb-12 max-w-xl mx-auto drop-shadow-md">
           <span data-sl="Kjer Kolpa šepeta in gozd diha" data-en="Where Kolpa whispers and forest breathes">Kjer Kolpa šepeta in gozd diha</span>
         </p>
 
@@ -152,9 +100,9 @@ const reviews = [
           </button>
         </div>
 
-        {/* Voice Status Message */}
-        <div id="voice-status" class="hidden mt-4 text-white/80 text-sm bg-black/20 px-4 py-2 rounded-full inline-block backdrop-blur-sm">
-          Poslušam...
+        {/* Voice Status Message (hidden until activated via JS) */}
+        <div id="voice-status" class="mt-4 text-white/80 text-sm bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm" style="display: none;">
+          <span data-sl="Poslušam..." data-en="Listening...">Poslušam...</span>
         </div>
       </div>
 
@@ -343,22 +291,22 @@ const reviews = [
           </h2>
         </div>
 
-        {/* Gallery Grid - Natural image heights */}
+        {/* Gallery Grid - Uniform aspect ratio for consistent layout */}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {galleryImages.map((img, i) => (
             <div
-              class="rounded-3xl overflow-hidden group relative cursor-pointer bg-surface shadow-md"
+              class="rounded-3xl overflow-hidden group relative cursor-pointer bg-surface shadow-md aspect-[4/3]"
               data-aos="fade-up"
               data-aos-delay={i * 80}
             >
               <img
                 src={img.src}
                 alt={img.alt}
-                class="w-full h-auto block group-hover:scale-[1.02] transition-transform duration-500"
+                class="w-full h-full object-cover block group-hover:scale-[1.04] transition-transform duration-500"
                 loading={i < 3 ? "eager" : "lazy"}
                 decoding="async"
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
                 <span class="text-white font-semibold text-base">{img.alt}</span>
               </div>
             </div>
@@ -468,23 +416,6 @@ const reviews = [
           </a>
         </div>
 
-        {/* Stripe UI Placeholder */}
-        <div class="max-w-md mx-auto mt-8 p-4 glass rounded-xl text-left">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-white/60 text-sm"><span data-sl="Varno plačilo" data-en="Secure payment">Varno plačilo</span></span>
-            <span class="text-accent font-bold">Stripe</span>
-          </div>
-          <div class="flex gap-3">
-            <input type="email" placeholder="email@example.com" class="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-2.5 text-white placeholder:text-white/30 focus:outline-none focus:border-accent text-sm" />
-            <button class="bg-accent text-primary px-5 py-2.5 rounded-lg font-bold text-sm hover:bg-accent-light transition-colors">
-              <span data-sl="Plačaj" data-en="Pay">Plačaj</span>
-            </button>
-          </div>
-          <p class="text-white/40 text-xs mt-2 text-center">
-            <span data-sl="Podprto s Stripe. Vaši podatki so varni." data-en="Powered by Stripe. Your data is secure.">Podprto s Stripe. Vaši podatki so varni.</span>
-          </p>
-        </div>
-
         <div class="mt-12 flex flex-wrap justify-center gap-8 text-white/40 text-sm">
           <a href="mailto:majda.pezdirc@gmail.com" class="hover:text-white transition-colors">📧 majda.pezdirc@gmail.com</a>
           <a href="tel:+38640858732" class="hover:text-white transition-colors">📞 +386 40 858 732</a>
@@ -568,46 +499,6 @@ const reviews = [
       </div>
     </section>
 
-    {/* FOOTER */}
-    <footer class="bg-primary-dark text-white/60 py-16">
-      <div class="container-site px-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-          <div>
-            <h3 class="font-display text-2xl font-bold text-white mb-5">River Kolpa</h3>
-            <p class="text-sm leading-relaxed mb-6">
-              <span data-sl="Vaš dom v Beli krajini. Popoln oddih ob reki Kolpi za družine, pare in pustolovce." data-en="Your home in White Carniola. Perfect retreat by the Kolpa river for families, couples, and adventurers.">Vaš dom v Beli krajini. Popoln oddih ob reki Kolpi za družine, pare in pustolovce.</span>
-            </p>
-            <div class="flex gap-4">
-              <a href="https://www.booking.com/hotel/si/holiday-house-kolpa.html" target="_blank" class="text-white/40 hover:text-accent transition-colors">Booking.com</a>
-              <a href="https://www.instagram.com/riverkolpa" target="_blank" class="text-white/40 hover:text-accent transition-colors">Instagram</a>
-              <a href="https://wa.me/38640858732" target="_blank" class="text-white/40 hover:text-accent transition-colors">WhatsApp</a>
-            </div>
-          </div>
-          <div>
-            <h4 class="font-bold text-white mb-5 uppercase tracking-wider text-xs"><span data-sl="Hitre povezave" data-en="Quick Links">Hitre povezave</span></h4>
-            <ul class="space-y-3 text-sm">
-              <li><a href="/apartment" class="hover:text-accent transition-colors"><span data-sl="O apartmaju" data-en="About">O apartmaju</span></a></li>
-              <li><a href="/gallery" class="hover:text-accent transition-colors"><span data-sl="Galerija" data-en="Gallery">Galerija</span></a></li>
-              <li><a href="/pricing" class="hover:text-accent transition-colors"><span data-sl="Cenik" data-en="Pricing">Cenik</span></a></li>
-              <li><a href="/contact" class="hover:text-accent transition-colors"><span data-sl="Kontakt" data-en="Contact">Kontakt</span></a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="font-bold text-white mb-5 uppercase tracking-wider text-xs"><span data-sl="Kontakt" data-en="Contact">Kontakt</span></h4>
-            <ul class="space-y-3 text-sm">
-              <li>📧 <a href="mailto:majda.pezdirc@gmail.com" class="hover:text-accent transition-colors">majda.pezdirc@gmail.com</a></li>
-              <li>📞 <a href="tel:+38640858732" class="hover:text-accent transition-colors">+386 40 858 732</a></li>
-              <li>📍 <span data-sl="Griblje, Bela krajina, Slovenija" data-en="Griblje, White Carniola, Slovenia">Griblje, Bela krajina, Slovenija</span></li>
-            </ul>
-          </div>
-        </div>
-        <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-          <p>© 2026 River Kolpa Apartments. <span data-sl="Vse pravice pridržane." data-en="All rights reserved.">Vse pravice pridržane.</span></p>
-          <p class="text-white/30"><span data-sl="Izdelano z" data-en="Crafted with">Izdelano z</span> ❤️ <span data-sl="v Beli krajini" data-en="in White Carniola">v Beli krajini</span></p>
-        </div>
-      </div>
-    </footer>
-
     {/* UNIFIED FLOATING TOOLBAR (Right Side) */}
     <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end">
       
@@ -624,17 +515,17 @@ const reviews = [
         
         {/* Dropdown Menu */}
         <div id="quick-menu" class="absolute bottom-14 right-0 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-2 w-[220px] max-w-[calc(100vw-2rem)] hidden transform transition-all overflow-hidden">
-          <button id="dark-mode-toggle" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="dark-icon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          <button data-action="toggle-dark-mode" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300" data-sl="Temni način" data-en="Dark Mode">Temni način</span>
           </button>
 
-          <button id="lang-toggle" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left cursor-pointer">
+          <button data-action="toggle-lang" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300" data-sl="Jezik / Language" data-en="Language / Jezik">Jezik / Language</span>
           </button>
 
-          <button id="voice-btn" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left cursor-pointer relative">
+          <button data-action="voice-search" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left cursor-pointer relative">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
             <span class="text-sm font-medium text-gray-700 dark:text-gray-300" data-sl="Glasovno iskanje" data-en="Voice Search">Glasovno iskanje</span>
           </button>
@@ -735,111 +626,120 @@ const reviews = [
 
     {/* SCRIPTS FOR 2026 FEATURES */}
     <script>
-      // 1. MENU TOGGLE
+      // 1. QUICK MENU TOGGLE
       const menuToggle = document.getElementById('menu-toggle');
       const quickMenu = document.getElementById('quick-menu');
-      
+
       menuToggle?.addEventListener('click', (e) => {
         e.stopPropagation();
         quickMenu.classList.toggle('hidden');
-        if (!quickMenu.classList.contains('hidden')) {
-          quickMenu.style.transform = 'scale(1)';
-          quickMenu.style.opacity = '1';
-        } else {
-          quickMenu.style.transform = 'scale(0.95)';
-          quickMenu.style.opacity = '0';
-        }
       });
-      
+
       document.addEventListener('click', (e) => {
-        if (!quickMenu.contains(e.target) && e.target !== menuToggle) {
+        if (quickMenu && !quickMenu.contains(e.target) && e.target !== menuToggle) {
           quickMenu.classList.add('hidden');
         }
       });
 
-      // 2. DARK MODE FUNCTIONALITY
-      const darkToggle = document.getElementById('dark-mode-toggle');
-      const darkIcon = document.getElementById('dark-icon');
-      let isDark = false;
+      const closeQuickMenu = () => quickMenu?.classList.add('hidden');
 
-      darkToggle?.addEventListener('click', () => {
-        isDark = !isDark;
-        document.documentElement.classList.toggle('dark');
-        darkIcon.innerHTML = isDark ? '☀️' : '🌙';
-        
-        if (isDark) {
-          document.body.style.backgroundColor = '#111827';
-          document.body.style.color = '#f3f4f6';
-          document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(el => el.style.color = '#ffffff');
-          document.querySelectorAll('.glass').forEach(el => {
-             el.style.backgroundColor = 'rgba(255,255,255,0.05)';
-             el.style.borderColor = 'rgba(255,255,255,0.1)';
-          });
-        } else {
-          document.body.style.backgroundColor = '';
-          document.body.style.color = '';
-          document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(el => el.style.color = '');
-          document.querySelectorAll('.glass').forEach(el => {
-             el.style.backgroundColor = '';
-             el.style.borderColor = '';
-          });
-        }
-        quickMenu.classList.add('hidden');
+      // 2. DARK MODE — delegate to Layout's toggle for a single source of truth.
+      document.querySelector('[data-action="toggle-dark-mode"]')?.addEventListener('click', () => {
+        document.getElementById('dark-mode-toggle')?.click();
+        closeQuickMenu();
       });
 
-      // 3. LANGUAGE SWITCHER
-      const langBtn = document.getElementById('lang-toggle');
-      let currentLang = 'sl';
+      // 3. LANGUAGE SWITCHER — swaps text content of the last text node only,
+      //    so nested SVG icons and child elements are preserved.
+      const LANG_KEY = 'site-lang';
+      const getLang = () => localStorage.getItem(LANG_KEY) || 'sl';
 
-      langBtn?.addEventListener('click', () => {
-        currentLang = currentLang === 'sl' ? 'en' : 'sl';
-        langBtn.querySelector('span').textContent = currentLang === 'sl' ? '🌍' : '🇸🇮';
-        
+      function applyLanguage(lang) {
+        document.documentElement.lang = lang === 'sl' ? 'sl' : 'en';
+
         document.querySelectorAll('[data-sl][data-en]').forEach(el => {
-           const text = el.getAttribute(`data-${currentLang}`);
-           if (text) el.textContent = text;
-        });
-        quickMenu.classList.add('hidden');
-      });
+          const text = el.getAttribute(`data-${lang}`);
+          if (!text) return;
 
-      // 4. VOICE SEARCH WITH VISUAL FEEDBACK
-      const voiceBtn = document.getElementById('voice-btn');
-      
-      if (voiceBtn) {
-        voiceBtn.addEventListener('click', () => {
-          const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-          
-          if (SpeechRecognition) {
-            const recognition = new SpeechRecognition();
-            recognition.lang = 'sl-SI';
-            recognition.start();
-            
-            voiceBtn.classList.add('voice-active');
-            voiceBtn.querySelector('span:last-child').textContent = 'Poslušam...';
+          // Prefer updating the last text node to preserve child elements (e.g. SVGs).
+          const lastTextNode = Array.from(el.childNodes)
+            .reverse()
+            .find(n => n.nodeType === Node.TEXT_NODE && n.textContent.trim());
 
-            recognition.onresult = (event) => {
-              const transcript = event.results[0][0].transcript;
-              voiceBtn.classList.remove('voice-active');
-              voiceBtn.querySelector('span:last-child').textContent = `Slišal: "${transcript}"`;
-              setTimeout(() => {
-                voiceBtn.querySelector('span:last-child').textContent = currentLang === 'sl' ? 'Glasovno iskanje' : 'Voice Search';
-              }, 3000);
-            };
-
-            recognition.onerror = () => {
-              voiceBtn.classList.remove('voice-active');
-              voiceBtn.querySelector('span:last-child').textContent = 'Napaka';
-            };
-            
-            recognition.onend = () => {
-              voiceBtn.classList.remove('voice-active');
-            };
-          } else {
-            alert('Vaš brskalnik ne podpira glasovnega iskanja.');
+          if (lastTextNode) {
+            lastTextNode.textContent = text;
+          } else if (el.children.length === 0) {
+            el.textContent = text;
           }
-          quickMenu.classList.add('hidden');
+        });
+
+        document.querySelectorAll('#lang-label, #mobile-lang-label').forEach(el => {
+          el.textContent = lang === 'sl' ? 'SL' : 'EN';
         });
       }
+
+      function toggleLanguage() {
+        const next = getLang() === 'sl' ? 'en' : 'sl';
+        localStorage.setItem(LANG_KEY, next);
+        applyLanguage(next);
+      }
+
+      applyLanguage(getLang());
+
+      document.getElementById('lang-toggle')?.addEventListener('click', toggleLanguage);
+      document.getElementById('mobile-lang-toggle')?.addEventListener('click', toggleLanguage);
+      document.querySelector('[data-action="toggle-lang"]')?.addEventListener('click', () => {
+        toggleLanguage();
+        closeQuickMenu();
+      });
+
+      // 4. VOICE SEARCH — hero button + quick-menu entry share the same handler.
+      const voiceBtn = document.getElementById('voice-btn');
+      const voiceStatus = document.getElementById('voice-status');
+
+      function startVoiceSearch() {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+          alert(getLang() === 'sl'
+            ? 'Vaš brskalnik ne podpira glasovnega iskanja.'
+            : 'Your browser does not support voice search.');
+          return;
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = getLang() === 'sl' ? 'sl-SI' : 'en-US';
+
+        if (voiceStatus) voiceStatus.style.display = 'inline-block';
+        voiceBtn?.classList.add('voice-active');
+
+        recognition.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          if (voiceStatus) {
+            voiceStatus.textContent = (getLang() === 'sl' ? 'Slišal: ' : 'Heard: ') + `"${transcript}"`;
+            setTimeout(() => { voiceStatus.style.display = 'none'; }, 3000);
+          }
+        };
+
+        recognition.onerror = () => {
+          if (voiceStatus) {
+            voiceStatus.textContent = getLang() === 'sl' ? 'Napaka' : 'Error';
+            setTimeout(() => { voiceStatus.style.display = 'none'; }, 2000);
+          }
+        };
+
+        recognition.onend = () => {
+          voiceBtn?.classList.remove('voice-active');
+        };
+
+        recognition.start();
+      }
+
+      voiceBtn?.addEventListener('click', startVoiceSearch);
+      document.querySelector('[data-action="voice-search"]')?.addEventListener('click', () => {
+        startVoiceSearch();
+        closeQuickMenu();
+      });
 
       // 5. BOOKING MODAL
       const bookNowBtn = document.getElementById('book-now-btn');
@@ -847,34 +747,31 @@ const reviews = [
       const closeModal = document.getElementById('close-modal');
       const modalContent = document.getElementById('modal-content');
 
-      bookNowBtn?.addEventListener('click', () => {
+      function openBookingModal() {
+        if (!bookingModal || !modalContent) return;
         bookingModal.classList.remove('hidden');
         bookingModal.style.display = 'flex';
-        setTimeout(() => {
+        requestAnimationFrame(() => {
           modalContent.style.transform = 'scale(1)';
           modalContent.style.opacity = '1';
-        }, 10);
-        quickMenu.classList.add('hidden');
-      });
+        });
+        closeQuickMenu();
+      }
 
-      closeModal?.addEventListener('click', () => {
+      function closeBookingModal() {
+        if (!bookingModal || !modalContent) return;
         modalContent.style.transform = 'scale(0.95)';
         modalContent.style.opacity = '0';
         setTimeout(() => {
           bookingModal.classList.add('hidden');
           bookingModal.style.display = 'none';
         }, 200);
-      });
+      }
 
+      bookNowBtn?.addEventListener('click', openBookingModal);
+      closeModal?.addEventListener('click', closeBookingModal);
       bookingModal?.addEventListener('click', (e) => {
-        if (e.target === bookingModal) {
-          modalContent.style.transform = 'scale(0.95)';
-          modalContent.style.opacity = '0';
-          setTimeout(() => {
-            bookingModal.classList.add('hidden');
-            bookingModal.style.display = 'none';
-          }, 200);
-        }
+        if (e.target === bookingModal) closeBookingModal();
       });
     </script>
 
