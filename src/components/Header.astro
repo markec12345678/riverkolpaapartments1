@@ -111,26 +111,7 @@ const links = [
     mobileMenu.classList.toggle('flex');
   });
 
-  // Language Toggle Logic
-  let currentLang = 'sl';
-  const langToggle = document.getElementById('lang-toggle');
-  const mobileLangToggle = document.getElementById('mobile-lang-toggle');
-  const langLabel = document.getElementById('lang-label');
-  const mobileLangLabel = document.getElementById('mobile-lang-label');
-  const translatableElements = document.querySelectorAll('[data-sl]');
-
-  function setLanguage(lang: string) {
-    currentLang = lang;
-    const label = lang.toUpperCase();
-    if (langLabel) langLabel.textContent = label;
-    if (mobileLangLabel) mobileLangLabel.textContent = label;
-    
-    translatableElements.forEach(el => {
-      const text = el.getAttribute(`data-${lang}`);
-      if (text) el.textContent = text;
-    });
-  }
-
-  langToggle?.addEventListener('click', () => setLanguage(currentLang === 'sl' ? 'en' : 'sl'));
-  mobileLangToggle?.addEventListener('click', () => setLanguage(currentLang === 'sl' ? 'en' : 'sl'));
+  // Language switching is owned by the page-level script
+  // (see src/pages/index.astro) so the logic stays in one place and
+  // preserves nested SVG icons when swapping translations.
 </script>
